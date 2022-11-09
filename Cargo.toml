@@ -1,5 +1,5 @@
 [package]
-name = "blog-operator"
+name = "bloggy-rs"
 version = "0.1.0"
 authors = ["Nitish Malhotra <nitish.malhotra@gmail.com>"]
 default-run = "controller"
@@ -33,3 +33,4 @@ tracing = "0.1" # Logging
 tracing-subscriber = "0.3.3"
 anyhow = "1.0.66"
 either = "1.8.0"
+pulldown-cmark = "0.9.2"

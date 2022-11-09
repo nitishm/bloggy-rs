@@ -8,4 +8,4 @@ spec:
     - Nitish Malhotra
   draft: false
   content: |
-    "This is a test blog header"
+    # This is a test blog title

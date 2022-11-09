@@ -6,12 +6,16 @@ use kube::{
     runtime::controller::Action,
     Api, CustomResource, ResourceExt,
 };
+use pulldown_cmark::Options as MDOptions;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
 use tracing::*;
 
-use crate::{Context, Error};
+use crate::{
+    markdown::{self, render_markdown},
+    Context,
+};
 
 #[derive(CustomResource, Clone, Debug, Deserialize, Serialize, JsonSchema, PartialEq)]
 #[kube(
@@ -42,6 +46,7 @@ pub struct BlogStatus {
     created_at: String,
     published_at: String,
     modified_at: String,
+    html: String,
 }
 
 impl Blog {
@@ -57,6 +62,7 @@ impl Blog {
             published_at = "".to_string();
         }
 
+        let html_output = render_markdown(&self.spec.content, MDOptions::empty());
         // do something with the blog object
         let pp = PatchParams::apply("ctrlr").force();
         let patch = Patch::Apply(json!({
@@ -67,6 +73,7 @@ impl Blog {
             created_at: now.clone(),
             published_at: published_at.clone(),
             modified_at: now.clone(),
+            html: html_output,
         },
         }));
 

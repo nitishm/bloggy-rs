@@ -25,3 +25,5 @@ pub use manager::Manager;
 /// Generated type, for crdgen
 pub mod api;
 pub use api::Blog;
+
+mod markdown;
