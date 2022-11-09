@@ -1,0 +1,9 @@
+apiVersion: letsgopherit.com/v1
+kind: Blog
+metadata:
+  name: first-post
+spec:
+  title: First Post
+  author:
+    - Nitish Malhotra
+  draft: false

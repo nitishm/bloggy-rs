@@ -1,0 +1,108 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  creationTimestamp: "2022-10-28T18:17:00Z"
+  generation: 1
+  managedFields:
+  - apiVersion: apiextensions.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:acceptedNames:
+          f:kind: {}
+          f:listKind: {}
+          f:plural: {}
+          f:singular: {}
+        f:conditions:
+          k:{"type":"Established"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"NamesAccepted"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+    manager: kube-apiserver
+    operation: Update
+    time: "2022-10-28T18:17:00Z"
+  - apiVersion: apiextensions.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:spec:
+        f:conversion:
+          .: {}
+          f:strategy: {}
+        f:group: {}
+        f:names:
+          f:kind: {}
+          f:listKind: {}
+          f:plural: {}
+          f:singular: {}
+        f:scope: {}
+        f:versions: {}
+    manager: unknown
+    operation: Update
+    time: "2022-10-28T18:17:00Z"
+  name: blogs.letsgopherit.com
+  resourceVersion: "14143"
+  uid: 3722491a-446b-4d86-8bde-69db1f0d1d54
+spec:
+  conversion:
+    strategy: None
+  group: letsgopherit.com
+  names:
+    kind: Blog
+    listKind: BlogList
+    plural: blogs
+    singular: blog
+  scope: Namespaced
+  versions:
+  - name: v1
+    schema:
+      openAPIV3Schema:
+        description: Auto-generated derived type for BlogSpec via `CustomResource`
+        properties:
+          spec:
+            properties:
+              author:
+                items:
+                  type: string
+                type: array
+              title:
+                type: string
+            required:
+            - author
+            - title
+            type: object
+        required:
+        - spec
+        title: Blog
+        type: object
+    served: true
+    storage: true
+    subresources: {}
+status:
+  acceptedNames:
+    kind: Blog
+    listKind: BlogList
+    plural: blogs
+    singular: blog
+  conditions:
+  - lastTransitionTime: "2022-10-28T18:17:00Z"
+    message: no conflicts found
+    reason: NoConflicts
+    status: "True"
+    type: NamesAccepted
+  - lastTransitionTime: "2022-10-28T18:17:00Z"
+    message: the initial names have been accepted
+    reason: InitialNamesAccepted
+    status: "True"
+    type: Established
+  storedVersions:
+  - v1

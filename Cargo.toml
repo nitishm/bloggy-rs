@@ -1,0 +1,35 @@
+[package]
+name = "blog-operator"
+version = "0.1.0"
+authors = ["Nitish Malhotra <nitish.malhotra@gmail.com>"]
+default-run = "controller"
+edition = "2021"
+
+[[bin]]
+name = "controller"
+path = "src/main.rs"
+
+[[bin]]
+name = "crdgen"
+path = "src/crdgen.rs"
+
+[lib]
+name = "controller"
+path = "src/lib.rs"
+
+[dependencies]
+tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] } # Macros for easy project setup and testing, multi-threaded runtime for best utilization of resources
+kube = { version = "0.76.0", default-features = true, features = ["derive", "runtime"] } # Library for talking to Kubernetes API
+k8s-openapi = { version = "0.16.0", default-features = false, features = ["v1_22"] } # Kube-rs depends on k8s-openapi
+futures = "0.3.25"
+# All serde dependencies are used to serialize/deserialize CRDs and other Kubernetes-related structs
+serde = "1"
+serde_json = "1.0.87"
+serde_yaml = "0.9.14"
+schemars = "0.8"
+chrono = "0.4"
+thiserror = "1" # Custom Error definitions and convenient error mappings
+tracing = "0.1" # Logging
+tracing-subscriber = "0.3.3"
+anyhow = "1.0.66"
+either = "1.8.0"
