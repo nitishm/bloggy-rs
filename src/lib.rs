@@ -1,3 +1,4 @@
+use kube::Client;
 use thiserror::Error;
 
 #[derive(Error, Debug)]
@@ -10,9 +11,17 @@ pub enum Error {
 }
 pub type Result<T, E = Error> = std::result::Result<T, E>;
 
+// Context for our reconciler
+#[derive(Clone)]
+pub struct Context {
+    /// Kubernetes client
+    client: Client,
+}
+
 /// State machinery for kube, as exposeable to actix
 pub mod manager;
 pub use manager::Manager;
 
 /// Generated type, for crdgen
-pub use manager::Blog;
+pub mod api;
+pub use api::Blog;
